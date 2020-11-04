@@ -1,3 +1,3 @@
 #### Redovisa på GitHub
 
-Skriv något kort om ditt redovisa-repo och länka till [repot för me/redovisa på GitHub](XXX).
+I denna kursen lägger vi även upp all vår kod på github. Här är länken till [repot för me/redovisa på GitHub](https://github.com/sandraKh/ramverk1).
