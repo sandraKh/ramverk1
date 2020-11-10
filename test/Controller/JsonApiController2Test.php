@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\Ipvalidator2;
+namespace Anax\Ipvalidator;
 
 use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the IpAPIControllerTest.
  */
-class JsonApiControllerTest extends TestCase
+class JsonApiController2Test extends TestCase
 {
 
     /**
@@ -39,13 +39,7 @@ class JsonApiControllerTest extends TestCase
             "ipAddress" => "234",
             "isValid" => false,
             "ipv" => "Undefined",
-            "domain" => null,
-            'location' => [
-                'longitude' => null,
-                'latitude' => null,
-                'country_name' => null,
-                'city' => null
-            ],
+            "domain" => null
         ]];
         $this->assertEquals($exp, $res);
     }

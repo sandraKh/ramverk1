@@ -1,11 +1,11 @@
 <?php
 
-namespace Anax\Ipvalidator2;
+namespace Anax\Ipvalidator;
 
 use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
 
-class IpcheckControllerTest extends TestCase
+class IpcheckController2Test extends TestCase
 {
 
     protected function setUp()
@@ -34,12 +34,7 @@ class IpcheckControllerTest extends TestCase
             "ipAddress" => "158.174.92.90",
             "isValid" => true,
             "ipv" => "IPv4",
-            "domain" => "h-92-90.A1314.priv.bahnhof.se",
-            'longitude' => 18.051319122314453,
-            'latitude' => 59.315120697021484,
-            'country_name' => 'Sweden',
-            'city' => 'Stockholm',
-
+            "domain" => "h-92-90.A1314.priv.bahnhof.se"
         ];
         $this->assertEquals($exp, $res);
         $session->destroy();
@@ -55,11 +50,7 @@ class IpcheckControllerTest extends TestCase
             "ipAddress" => "0:0:0:0:0:0:0:0",
             "isValid" => true,
             "ipv" => "IPv6",
-            "domain" => "LAPTOP-ESKB9N8E",
-            'longitude' => null,
-            'latitude' => null,
-            'country_name' => null,
-            'city' => null,
+            "domain" => "LAPTOP-ESKB9N8E"
         ];
         $this->assertEquals($exp, $res);
         $session->destroy();
@@ -73,21 +64,5 @@ class IpcheckControllerTest extends TestCase
         $this->assertIsObject($res);
         $this->assertInstanceOf("Anax\Response\Response", $res);
         $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
-    }
-
-    public function testgetIpInfoNoSession()
-    {
-        $session = $this->di->get("session");
-        $session->set("ipaddress", "");
-
-        $res = $this->controller->getInfo();
-        $exp = [
-            'ipAddress' => '',
-            'isValid' => false,
-            'ipv' => 'Undefined',
-            'domain' => null,
-        ];
-        $this->assertEquals($exp, $res);
-        $session->destroy();
     }
 }

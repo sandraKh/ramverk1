@@ -46,7 +46,21 @@ return [
         [
             "text" => "IP-validator",
             "url" => "Ipvalidator",
-            "title" => "IP-validator",
+            "title" => "Redovisningstexter från kursmomenten.",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Kmom01",
+                        "url" => "Ipvalidator",
+                        "title" => "IP-validator för kmom01",
+                    ],
+                    [
+                        "text" => "Kmom02",
+                        "url" => "Ipvalidator2",
+                        "title" => "IP-validator för kmom02",
+                    ],
+                ],
+            ],
         ],
     ],
 ];
