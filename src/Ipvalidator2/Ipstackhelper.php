@@ -27,11 +27,10 @@ class Ipstackhelper implements ContainerInjectableInterface
 
     public function getLocation($ipAddress)
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://api.ipstack.com/" . $ipAddress . "?access_key=" . $this->key);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        $result = curl_exec($curl);
+        $get = curl_init();
+        curl_setopt($get, CURLOPT_URL, "http://api.ipstack.com/" . $ipAddress . "?access_key=" . $this->key);
+        curl_setopt($get, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($get);
         $inJson = json_decode($result, true);
         $location = [
             "longitude" => $inJson['longitude'] ?? null,
