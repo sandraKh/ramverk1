@@ -44,6 +44,11 @@ return [
             "title" => "Verktyg och möjligheter för utveckling.",
         ],
         [
+            "text" => "Väderlek",
+            "url" => "Weather",
+            "title" => "Väderlek",
+        ],
+        [
             "text" => "IP-validator",
             "url" => "Ipvalidator",
             "title" => "Redovisningstexter från kursmomenten.",

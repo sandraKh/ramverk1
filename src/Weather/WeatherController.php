@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\ipValidator2;
+namespace Anax\Weather;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
@@ -9,7 +9,7 @@ use Anax\Route\Exception\NotFoundException;
 /**
 * A controller to ease with development and debugging information.
 */
-class IpValidatorController implements ContainerInjectableInterface
+class WeatherController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -18,28 +18,30 @@ class IpValidatorController implements ContainerInjectableInterface
 
     public function initialize()
     {
-        $this->ipValidator = new Iphelper();
-        $this->GetLocation = new Ipstackhelper();
+        $this->GetLocation = new Weatherhelper();
     }
 
 
     public function indexAction() : object
     {
-        $title = "Validate IP";
-        $ipValidator = $this->ipValidator;
+        $title = "Weather";
         $page = $this->di->get("page");
-        $request = $this->di->get("request");
+
+        $weatherModel = $this->di->get("weatherhelper");
+
 
         if ($this->di->get("request")->hasGet("ipaddress")) {
             $session = $this->di->get("session");
             $session->set("ipaddress", $this->di->get("request")->getGet("ipaddress"));
+            // $userContainer = new Weatherhelper();
+
+            $data = $weatherModel->getUsersThroughMultiCurl([30], $this->getQuery());
 
             $ipInfo = $this->getInfo();
-            $page->add("ipValidator2/ipvalidate-result", $ipInfo);
+            $page->add("weather/weather-result", $ipInfo);
+            $page->add("weather/weather-past", $data);
         }
-        $page->add("ipValidator2/ipvalidate-form", [
-            "defaultIP" => $ipValidator->getIp($request),
-        ]);
+        $page->add("weather/weather-form", []);
         return $page->render([
             "title" => $title,
         ]);
@@ -48,19 +50,22 @@ class IpValidatorController implements ContainerInjectableInterface
     public function getInfo()
     {
         $session = $this->di->get("session");
-        $ipHelper = $this->ipValidator;
-        $loacationHelper = $this->GetLocation;
 
+        $weatherModel = $this->di->get("weatherhelper");
         $ipInfo = [];
         $ipAddress = $session->get("ipaddress");
-        if ($ipHelper->isValid($ipAddress)) {
-            $ipInfo = $loacationHelper->getLocation($ipAddress);
-        }
-        $ipInfo["ipAddress"] = $ipAddress;
-        $ipInfo["isValid"] = $ipHelper->isValid($ipAddress);
-        $ipInfo["ipv"] = $ipHelper->getIpv($ipAddress);
-        $ipInfo["domain"] = $ipHelper->getDomain($ipAddress);
+
+        $weatherModel = $this->di->get("weatherhelper");
+        $ipInfo = $weatherModel->getLocation($ipAddress);
 
         return $ipInfo;
+    }
+
+    public function getQuery()
+    {
+        $session = $this->di->get("session");
+        $ipAddress = $session->get("ipaddress");
+
+        return $ipAddress;
     }
 }
