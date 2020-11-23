@@ -8,6 +8,7 @@
         "psr-4": {"Anax\\": "src/"}
     },
     "require": {
+        "sandrakh/weather-module": "^1.1",
         "anax/anax-ramverk1-me": "^1.0.0"
     },
     "require-dev": {
