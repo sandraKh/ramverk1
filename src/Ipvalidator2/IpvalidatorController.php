@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\ipValidator2;
+namespace Anax\Ipvalidator2;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
@@ -9,7 +9,7 @@ use Anax\Route\Exception\NotFoundException;
 /**
 * A controller to ease with development and debugging information.
 */
-class IpValidatorController implements ContainerInjectableInterface
+class IpvalidatorController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -35,9 +35,9 @@ class IpValidatorController implements ContainerInjectableInterface
             $session->set("ipaddress", $this->di->get("request")->getGet("ipaddress"));
 
             $ipInfo = $this->getInfo();
-            $page->add("ipValidator2/ipvalidate-result", $ipInfo);
+            $page->add("ipvalidator2/ipvalidate-result", $ipInfo);
         }
-        $page->add("ipValidator2/ipvalidate-form", [
+        $page->add("ipvalidator2/ipvalidate-form", [
             "defaultIP" => $ipValidator->getIp($request),
         ]);
         return $page->render([
