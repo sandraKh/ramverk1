@@ -69,6 +69,11 @@ return [
             "title" => "Väderlek",
         ],
         [
+            "text" => "Böcker",
+            "url" => "book",
+            "title" => "Böcker",
+        ],
+        [
             "text" => "IP-validator",
             "url" => "Ipvalidator",
             "title" => "Redovisningstexter från kursmomenten.",

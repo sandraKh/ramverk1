@@ -63,3 +63,10 @@ h1, h2, h3 {
   background-color: #3333ff;
   color: white;
 }
+
+.picture {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+}
